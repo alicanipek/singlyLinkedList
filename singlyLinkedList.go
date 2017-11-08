@@ -8,16 +8,18 @@ type node struct {
 	next *node
 }
 
+//Sll singly linked list type
 type Sll struct {
 	head *node
 
 	length int
 }
 
-func NewSll(h *node, length int) *Sll {
+//NewSll creates a singly linked list
+func NewSll() *Sll {
 	var s Sll
-	s.head = h
-	s.length = length
+	s.head = nil
+	s.length = 0
 	return &s
 }
 
