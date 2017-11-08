@@ -23,7 +23,8 @@ func NewSll() *Sll {
 	return &s
 }
 
-func (s *Sll) insertEnd(v interface{}) {
+//InsertEnd adds element to the end of list
+func (s *Sll) InsertEnd(v interface{}) {
 	n := &node{Value: v}
 	if s.head == nil {
 		s.head = n
@@ -39,7 +40,8 @@ func (s *Sll) insertEnd(v interface{}) {
 	s.length++
 }
 
-func (s *Sll) insertStart(v interface{}) {
+//InsertFront adds element to the front of list
+func (s *Sll) InsertFront(v interface{}) {
 	n := &node{Value: v}
 	if s.head == nil {
 		s.head = n
@@ -52,7 +54,8 @@ func (s *Sll) insertStart(v interface{}) {
 	s.length++
 }
 
-func (s *Sll) insertAfter(v interface{}, after interface{}) error {
+//InsertAfter adds element after specified element
+func (s *Sll) InsertAfter(v interface{}, after interface{}) error {
 	in := &node{Value: v}
 	if s.head == nil {
 		s.head = in
@@ -74,16 +77,17 @@ func (s *Sll) insertAfter(v interface{}, after interface{}) error {
 	return fmt.Errorf("Cant find after node")
 }
 
-func (s *Sll) removeEnd() (*node, error) {
+//RemoveEnd removes element from the end of list
+func (s *Sll) RemoveEnd() error {
 	if s.head == nil {
-		return nil, fmt.Errorf("list is empty")
+		return fmt.Errorf("list is empty")
 	}
 	temp1 := s.head
 	var temp2 *node
 	if temp1.next == nil {
 		s.head = nil
 		s.length--
-		return temp1, nil
+		return nil
 	}
 
 	for temp1.next != nil {
@@ -93,12 +97,13 @@ func (s *Sll) removeEnd() (*node, error) {
 
 	temp2.next = nil
 	s.length--
-	return temp1, nil
+	return nil
 }
 
-func (s *Sll) removeFront() (*node, error) {
+//RemoveFront adds element to the end of list
+func (s *Sll) RemoveFront() error {
 	if s.head == nil {
-		return nil, fmt.Errorf("list is empty")
+		return fmt.Errorf("list is empty")
 	}
 
 	temp := s.head
@@ -106,15 +111,16 @@ func (s *Sll) removeFront() (*node, error) {
 	if temp.next == nil {
 		s.head = nil
 		s.length--
-		return temp, nil
+		return nil
 	}
 
 	s.head = temp.next
 	s.length--
-	return temp, nil
+	return nil
 }
 
-func (s *Sll) removeSpecific(v interface{}) error {
+//RemoveSpecific removes specified element from the list
+func (s *Sll) RemoveSpecific(v interface{}) error {
 	if s.head == nil {
 		return fmt.Errorf("list is empty")
 	}
@@ -134,7 +140,8 @@ func (s *Sll) removeSpecific(v interface{}) error {
 	return nil
 }
 
-func (s *Sll) display() {
+//Display displays the list
+func (s *Sll) Display() {
 	if s.head == nil {
 		fmt.Print("List is empty.")
 	}
@@ -145,6 +152,7 @@ func (s *Sll) display() {
 	}
 }
 
-func (s *Sll) size() int {
+//Size returns length of the list
+func (s *Sll) Size() int {
 	return s.length
 }
