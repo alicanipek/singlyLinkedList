@@ -1,4 +1,4 @@
-package main
+package singlyLinkedList
 
 import "fmt"
 
@@ -8,20 +8,20 @@ type node struct {
 	next *node
 }
 
-type sll struct {
+type Sll struct {
 	head *node
 
 	length int
 }
 
-func newSll(h *node, length int) *sll {
-	var s sll
+func NewSll(h *node, length int) *Sll {
+	var s Sll
 	s.head = h
 	s.length = length
 	return &s
 }
 
-func (s *sll) insertEnd(v interface{}) {
+func (s *Sll) insertEnd(v interface{}) {
 	n := &node{Value: v}
 	if s.head == nil {
 		s.head = n
@@ -37,7 +37,7 @@ func (s *sll) insertEnd(v interface{}) {
 	s.length++
 }
 
-func (s *sll) insertStart(v interface{}) {
+func (s *Sll) insertStart(v interface{}) {
 	n := &node{Value: v}
 	if s.head == nil {
 		s.head = n
@@ -50,7 +50,7 @@ func (s *sll) insertStart(v interface{}) {
 	s.length++
 }
 
-func (s *sll) insertAfter(v interface{}, after interface{}) error {
+func (s *Sll) insertAfter(v interface{}, after interface{}) error {
 	in := &node{Value: v}
 	if s.head == nil {
 		s.head = in
@@ -72,7 +72,7 @@ func (s *sll) insertAfter(v interface{}, after interface{}) error {
 	return fmt.Errorf("Cant find after node")
 }
 
-func (s *sll) removeEnd() (*node, error) {
+func (s *Sll) removeEnd() (*node, error) {
 	if s.head == nil {
 		return nil, fmt.Errorf("list is empty")
 	}
@@ -94,7 +94,7 @@ func (s *sll) removeEnd() (*node, error) {
 	return temp1, nil
 }
 
-func (s *sll) removeFront() (*node, error) {
+func (s *Sll) removeFront() (*node, error) {
 	if s.head == nil {
 		return nil, fmt.Errorf("list is empty")
 	}
@@ -112,7 +112,7 @@ func (s *sll) removeFront() (*node, error) {
 	return temp, nil
 }
 
-func (s *sll) removeSpecific(v interface{}) error {
+func (s *Sll) removeSpecific(v interface{}) error {
 	if s.head == nil {
 		return fmt.Errorf("list is empty")
 	}
@@ -132,7 +132,7 @@ func (s *sll) removeSpecific(v interface{}) error {
 	return nil
 }
 
-func (s *sll) display() {
+func (s *Sll) display() {
 	if s.head == nil {
 		fmt.Print("List is empty.")
 	}
@@ -143,32 +143,6 @@ func (s *sll) display() {
 	}
 }
 
-func main() {
-	s := newSll(nil, 0)
-
-	s.insertEnd(1)
-	s.insertEnd(2)
-	s.insertEnd(3)
-	s.insertEnd(4)
-	s.insertEnd(5)
-
-	s.display()
-
-	/*for s.length != 0 {
-		e, er := s.removeEnd()
-		if er != nil {
-			fmt.Printf("error")
-		}
-		fmt.Println(e)
-	}*/
-
-	/*s.removeFront()
-	s.display()
-	*/
-
-	s.removeSpecific(4)
-	s.display()
-
-	s.insertAfter(8, 2)
-	s.display()
+func (s *Sll) size() int {
+	return s.length
 }
